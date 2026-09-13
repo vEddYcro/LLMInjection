@@ -1,0 +1,233 @@
+=== MFLP run 20260912T161140Z_llama3.3_70b-instruct-q4_K_M | model=llama3.3:70b-instruct-q4_K_M | pilot=0 ===
+--- [0/6] environment
+python: /home/research/.venv/bin/python3
+--- [1/6] freeze verification
+Study lock verified.
+primary confirmatory run: model matches frozen model_id
+--- [2/6] generating incidents and running the agent
+Study lock verified.
+Generated 168 canonical incidents and 1176 blinded assigned packages using adapter=ollama.
+Canonical traces: /home/research/MFLP/runtime/canonical
+Ground truth (study team only): /home/research/MFLP/runtime/ground_truth_private
+Investigator release: /home/research/MFLP/runtime/investigator_release
+
+real	7m32.939s
+user	0m0.399s
+sys	0m0.180s
+--- [3/6] blinding validation (strict)
+PASS: 1176 blinded packages scanned; no forbidden study-team labels found.
+Scanned 1176 packages: A_noE2=168, A_noE3=168, L0=168, L1=168, L2=168, L3=168, L4=168
+PASS: strict blinding validation clean.
+--- [4/6] design, power, cost and figures
++ /home/research/.venv/bin/python3 /home/research/MFLP/analysis_package/code/validate_package.py
+VALIDATION PASSED
+{
+  "schema_fields": 42,
+  "n_cases": 168,
+  "n_obs": 1176,
+  "n_investigators": 7,
+  "C1_each_case_once_per_investigator": true,
+  "C2_distinct_profiles_within_case": true,
+  "C3_family_investigator_profile_balance": true,
+  "C4_family_profile_balance": true,
+  "obs_per_investigator": {
+    "I1": 168,
+    "I2": 168,
+    "I3": 168,
+    "I4": 168,
+    "I5": 168,
+    "I6": 168,
+    "I7": 168
+  },
+  "obs_per_profile": {
+    "A_noE2": 168,
+    "A_noE3": 168,
+    "L0": 168,
+    "L1": 168,
+    "L2": 168,
+    "L3": 168,
+    "L4": 168
+  }
+}
++ /home/research/.venv/bin/python3 /home/research/MFLP/analysis_package/code/design.py
+{
+  "n_cases": 168,
+  "n_obs": 1176,
+  "n_investigators": 7,
+  "C1_each_case_once_per_investigator": true,
+  "C2_distinct_profiles_within_case": true,
+  "C3_family_investigator_profile_balance": true,
+  "C4_family_profile_balance": true,
+  "obs_per_investigator": {
+    "I1": 168,
+    "I2": 168,
+    "I3": 168,
+    "I4": 168,
+    "I5": 168,
+    "I6": 168,
+    "I7": 168
+  },
+  "obs_per_profile": {
+    "A_noE2": 168,
+    "A_noE3": 168,
+    "L0": 168,
+    "L1": 168,
+    "L2": 168,
+    "L3": 168,
+    "L4": 168
+  }
+}
+order diagnostics: {
+  "I1": {
+    "same_family_adjacent": 0,
+    "same_profile_adjacent": 0
+  },
+  "I2": {
+    "same_family_adjacent": 0,
+    "same_profile_adjacent": 0
+  },
+  "I3": {
+    "same_family_adjacent": 0,
+    "same_profile_adjacent": 0
+  },
+  "I4": {
+    "same_family_adjacent": 0,
+    "same_profile_adjacent": 0
+  },
+  "I5": {
+    "same_family_adjacent": 0,
+    "same_profile_adjacent": 0
+  },
+  "I6": {
+    "same_family_adjacent": 0,
+    "same_profile_adjacent": 0
+  },
+  "I7": {
+    "same_family_adjacent": 0,
+    "same_profile_adjacent": 0
+  }
+}
+wrote /home/research/MFLP/analysis_package/out/design_assignment.csv (1176 rows)
++ /home/research/.venv/bin/python3 /home/research/MFLP/analysis_package/code/schema_and_cost.py
+profile  bytes_raw_mean  bytes_gz_mean  events_mean  sens_raw_fields  sens_secret_fields  raw_content_chars  delta_bytes_gz  cum_ratio_vs_L4
+     L0        264.9125       211.0000        1.000             0.00                 0.0             0.0000             NaN         0.012909
+     L1      16749.2500     10339.7875        3.250             6.75                 0.0         14296.0000      10128.7875         0.632581
+     L2      24219.7375     14717.5875        4.375             9.00                 0.0         21336.4375       4377.8000         0.900412
+     L3      25816.6000     15455.8875        5.875             9.00                 3.0         22051.9375        738.3000         0.945580
+     L4      28200.6375     16345.4000        6.125             9.25                 3.0         22080.1000        889.5125         1.000000
+
+profile  bytes_raw_mean  bytes_gz_mean  events_mean  sens_raw_fields  sens_secret_fields  raw_content_chars
+     L0        264.9125       211.0000        1.000             0.00                 0.0             0.0000
+     L1      16749.2500     10339.7875        3.250             6.75                 0.0         14296.0000
+     L2      24219.7375     14717.5875        4.375             9.00                 0.0         21336.4375
+     L3      25816.6000     15455.8875        5.875             9.00                 3.0         22051.9375
+     L4      28200.6375     16345.4000        6.125             9.25                 3.0         22080.1000
+ A_noE2      18346.1125     11099.9750        4.750             6.75                 3.0         15011.5000
+ A_noE3      24219.7375     14717.5875        4.375             9.00                 0.0         21336.4375
++ /home/research/.venv/bin/python3 /home/research/MFLP/analysis_package/code/metrics.py
+                                           scenario  coverage  precision  kappa  unsupported_rate   PRS
+                L4 investigator (complete, ordered)       1.0      1.000  1.000             0.000 1.000
+              L3 investigator (misses network step)       0.8      1.000  1.000             0.000 0.889
+L2 investigator (no tool telemetry; invents a step)       0.6      0.750  1.000             0.250 0.667
+        L1 investigator (content but no provenance)       0.4      0.667  1.000             0.333 0.500
+         L1 investigator (right steps, wrong order)       0.6      1.000  0.333             0.000 0.250
+                L0 investigator (no reconstruction)       0.0      0.000  0.000             1.000 0.000
+
+calibrated   {'brier': np.float64(0.1512), 'reliability': np.float64(0.0029), 'resolution': np.float64(0.0255), 'uncertainty': np.float64(0.1757), 'ece': np.float64(0.0476)}
+overconfident {'brier': np.float64(0.2779), 'reliability': np.float64(0.0413), 'resolution': np.float64(0.0102), 'uncertainty': np.float64(0.247), 'ece': np.float64(0.1984)}
++ /home/research/.venv/bin/python3 /home/research/MFLP/analysis_package/code/sizing.py
+m=0.1 N=80 k=3 S4_true_L1     correct=0.350 under=0.000 abstain=0.250 SE=0.0456
+m=0.1 N=80 k=3 S2_true_L2     correct=0.450 under=0.000 abstain=0.250 SE=0.0456
+m=0.1 N=80 k=3 S1_true_L3     correct=0.400 under=0.000 abstain=0.250 SE=0.0481
+m=0.1 N=80 k=3 S3_true_L4     correct=0.650 under=0.000 abstain=0.350 SE=0.0745
+m=0.1 N=80 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0861
+m=0.1 N=80 k=5 S4_true_L1     correct=0.650 under=0.000 abstain=0.000 SE=0.0343
+m=0.1 N=80 k=5 S2_true_L2     correct=0.600 under=0.000 abstain=0.000 SE=0.0343
+m=0.1 N=80 k=5 S1_true_L3     correct=0.700 under=0.000 abstain=0.000 SE=0.0356
+m=0.1 N=80 k=5 S3_true_L4     correct=0.950 under=0.000 abstain=0.050 SE=0.0580
+m=0.1 N=80 k=5 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0682
+m=0.1 N=160 k=3 S4_true_L1     correct=0.700 under=0.000 abstain=0.000 SE=0.0346
+m=0.1 N=160 k=3 S2_true_L2     correct=0.600 under=0.000 abstain=0.000 SE=0.0346
+m=0.1 N=160 k=3 S1_true_L3     correct=0.800 under=0.000 abstain=0.000 SE=0.0361
+m=0.1 N=160 k=3 S3_true_L4     correct=0.600 under=0.000 abstain=0.400 SE=0.0544
+m=0.1 N=160 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0629
+m=0.1 N=160 k=5 S4_true_L1     correct=0.850 under=0.000 abstain=0.000 SE=0.0267
+m=0.1 N=160 k=5 S2_true_L2     correct=0.800 under=0.000 abstain=0.000 SE=0.0267
+m=0.1 N=160 k=5 S1_true_L3     correct=0.800 under=0.000 abstain=0.000 SE=0.0276
+m=0.1 N=160 k=5 S3_true_L4     correct=0.650 under=0.000 abstain=0.350 SE=0.0411
+m=0.1 N=160 k=5 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0473
+m=0.1 N=240 k=3 S4_true_L1     correct=0.800 under=0.000 abstain=0.000 SE=0.0261
+m=0.1 N=240 k=3 S2_true_L2     correct=0.900 under=0.000 abstain=0.000 SE=0.0261
+m=0.1 N=240 k=3 S1_true_L3     correct=0.900 under=0.000 abstain=0.000 SE=0.0267
+m=0.1 N=240 k=3 S3_true_L4     correct=0.850 under=0.000 abstain=0.150 SE=0.0423
+m=0.1 N=240 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0497
+m=0.1 N=320 k=3 S4_true_L1     correct=0.950 under=0.000 abstain=0.000 SE=0.0242
+m=0.1 N=320 k=3 S2_true_L2     correct=0.800 under=0.000 abstain=0.000 SE=0.0242
+m=0.1 N=320 k=3 S1_true_L3     correct=0.800 under=0.000 abstain=0.000 SE=0.0250
+m=0.1 N=320 k=3 S3_true_L4     correct=0.850 under=0.000 abstain=0.150 SE=0.0390
+m=0.1 N=320 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0451
+m=0.1 N=320 k=5 S4_true_L1     correct=0.800 under=0.000 abstain=0.000 SE=0.0188
+m=0.1 N=320 k=5 S2_true_L2     correct=0.900 under=0.000 abstain=0.000 SE=0.0188
+m=0.1 N=320 k=5 S1_true_L3     correct=0.700 under=0.000 abstain=0.000 SE=0.0196
+m=0.1 N=320 k=5 S3_true_L4     correct=0.700 under=0.000 abstain=0.300 SE=0.0296
+m=0.1 N=320 k=5 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0341
+m=0.05 N=80 k=3 S4_true_L1     correct=0.100 under=0.000 abstain=0.250 SE=0.0456
+m=0.05 N=80 k=3 S2_true_L2     correct=0.050 under=0.000 abstain=0.250 SE=0.0456
+m=0.05 N=80 k=3 S1_true_L3     correct=0.150 under=0.000 abstain=0.250 SE=0.0481
+m=0.05 N=80 k=3 S3_true_L4     correct=0.650 under=0.000 abstain=0.350 SE=0.0745
+m=0.05 N=80 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0861
+m=0.05 N=80 k=5 S4_true_L1     correct=0.250 under=0.000 abstain=0.000 SE=0.0343
+m=0.05 N=80 k=5 S2_true_L2     correct=0.100 under=0.000 abstain=0.000 SE=0.0343
+m=0.05 N=80 k=5 S1_true_L3     correct=0.200 under=0.000 abstain=0.000 SE=0.0356
+m=0.05 N=80 k=5 S3_true_L4     correct=0.950 under=0.000 abstain=0.050 SE=0.0580
+m=0.05 N=80 k=5 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0682
+m=0.05 N=160 k=3 S4_true_L1     correct=0.300 under=0.000 abstain=0.000 SE=0.0346
+m=0.05 N=160 k=3 S2_true_L2     correct=0.150 under=0.000 abstain=0.000 SE=0.0346
+m=0.05 N=160 k=3 S1_true_L3     correct=0.200 under=0.000 abstain=0.000 SE=0.0361
+m=0.05 N=160 k=3 S3_true_L4     correct=0.600 under=0.000 abstain=0.400 SE=0.0544
+m=0.05 N=160 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0629
+m=0.05 N=160 k=5 S4_true_L1     correct=0.400 under=0.000 abstain=0.000 SE=0.0267
+m=0.05 N=160 k=5 S2_true_L2     correct=0.300 under=0.000 abstain=0.000 SE=0.0267
+m=0.05 N=160 k=5 S1_true_L3     correct=0.300 under=0.000 abstain=0.000 SE=0.0276
+m=0.05 N=160 k=5 S3_true_L4     correct=0.650 under=0.000 abstain=0.350 SE=0.0411
+m=0.05 N=160 k=5 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0473
+m=0.05 N=240 k=3 S4_true_L1     correct=0.150 under=0.000 abstain=0.000 SE=0.0261
+m=0.05 N=240 k=3 S2_true_L2     correct=0.350 under=0.000 abstain=0.000 SE=0.0261
+m=0.05 N=240 k=3 S1_true_L3     correct=0.400 under=0.000 abstain=0.000 SE=0.0267
+m=0.05 N=240 k=3 S3_true_L4     correct=0.850 under=0.000 abstain=0.150 SE=0.0423
+m=0.05 N=240 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0497
+m=0.05 N=320 k=3 S4_true_L1     correct=0.450 under=0.000 abstain=0.000 SE=0.0242
+m=0.05 N=320 k=3 S2_true_L2     correct=0.300 under=0.000 abstain=0.000 SE=0.0242
+m=0.05 N=320 k=3 S1_true_L3     correct=0.300 under=0.000 abstain=0.000 SE=0.0250
+m=0.05 N=320 k=3 S3_true_L4     correct=0.850 under=0.000 abstain=0.150 SE=0.0390
+m=0.05 N=320 k=3 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0451
+m=0.05 N=320 k=5 S4_true_L1     correct=0.350 under=0.000 abstain=0.000 SE=0.0188
+m=0.05 N=320 k=5 S2_true_L2     correct=0.250 under=0.000 abstain=0.000 SE=0.0188
+m=0.05 N=320 k=5 S1_true_L3     correct=0.300 under=0.000 abstain=0.000 SE=0.0196
+m=0.05 N=320 k=5 S3_true_L4     correct=0.700 under=0.000 abstain=0.300 SE=0.0296
+m=0.05 N=320 k=5 S0_true_none   correct=1.000 under=0.000 abstain=1.000 SE=0.0341
+done
++ /home/research/.venv/bin/python3 /home/research/MFLP/analysis_package/code/curves.py
+80 3 {'delta1': np.float64(0.95), 'delta2': np.float64(0.7), 'delta3': np.float64(0.6), 'delta4': np.float64(0.1), 'H2a_E2_in_IR': np.float64(0.85), 'H2b_E3_in_T': np.float64(0.45), 'H3_E4_in_X': np.float64(0.05)}
+160 3 {'delta1': np.float64(1.0), 'delta2': np.float64(1.0), 'delta3': np.float64(0.8), 'delta4': np.float64(0.0), 'H2a_E2_in_IR': np.float64(1.0), 'H2b_E3_in_T': np.float64(0.65), 'H3_E4_in_X': np.float64(0.0)}
+160 5 {'delta1': np.float64(1.0), 'delta2': np.float64(1.0), 'delta3': np.float64(1.0), 'delta4': np.float64(0.1), 'H2a_E2_in_IR': np.float64(1.0), 'H2b_E3_in_T': np.float64(1.0), 'H3_E4_in_X': np.float64(0.3)}
+240 3 {'delta1': nan, 'delta2': nan, 'delta3': nan, 'delta4': nan, 'H2a_E2_in_IR': np.float64(1.0), 'H2b_E3_in_T': np.float64(0.9), 'H3_E4_in_X': np.float64(0.0)}
+320 5 {'delta1': nan, 'delta2': nan, 'delta3': nan, 'delta4': nan, 'H2a_E2_in_IR': np.float64(1.0), 'H2b_E3_in_T': np.float64(1.0), 'H3_E4_in_X': np.float64(0.45)}
+done
++ /home/research/.venv/bin/python3 /home/research/MFLP/analysis_package/code/figures.py
+wrote fig1_evidence_model.png
+wrote fig2_design.png
+wrote fig3_cost.png
+wrote fig4_frontier.png
+wrote fig5_precision.png
+wrote fig6_operating_characteristics.png
+wrote fig7_selection_power.png
+wrote fig8_prs.png
+PIPELINE COMPLETE
+--- [5/6] run manifest
+{
+  "n_canonical": 168,
+  "n_packages": 1176,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 595.97, 97887 MiB"
+}
+--- [6/6] packaging deliverables
